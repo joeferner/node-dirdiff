@@ -5,19 +5,23 @@ var path = require('path');
 var fs = require('fs');
 
 var dirdiff = module.exports = function (dir1, dir2, opts, callback) {
-  glob(path.join(dir1, '**'), function (err, dir1Files) {
+  glob('**', {cwd: dir1}, function (err, dir1Files) {
     if (err) {
       return callback(err);
     }
+	
+	// Filter null value
     dir1Files = dir1Files
-      .map(function (f) { return f.substring(dir1.length); });
+      .filter(function (f) { return !!f; });
 
-    glob(path.join(dir2, '**'), function (err, dir2Files) {
+    glob('**', {cwd: dir2}, function (err, dir2Files) {
       if (err) {
         return callback(err);
       }
+	  
+	  // Filter null value
       dir2Files = dir2Files
-        .map(function (f) { return f.substring(dir2.length); });
+        .filter(function (f) { return !!f; });
 
       diffFiles(dir1, dir1Files, dir2, dir2Files, opts, callback);
     });
