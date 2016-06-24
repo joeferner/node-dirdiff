@@ -1,6 +1,6 @@
 {
   "name": "dirdiff",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Directory diff tool.",
   "author": "Joe Ferner <joe@fernsroth.com>",
   "main": "dirdiff.js",
